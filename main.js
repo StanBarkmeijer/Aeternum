@@ -21,7 +21,7 @@ bot.on("message", async message => {
 
     // If the message.member is uncached, message.member might return null. 
     // This prevents that from happening. 
-    !message.member ? message.member = await message.guild.fetchMember(message.author) : message.member;
+    if (!message.member) message.member = await message.guild.fetchMember(message.author);
 
     console.log(`📧\t ${message.author.tag} : ${message.content}`);
 });
