@@ -1,7 +1,12 @@
-const { Client } = require("discord.js");
+const { Client, Collection } = require("discord.js");
 const { token } = require("./token.json");
 
 const bot = new Client();
+
+bot.commands = new Collection();
+bot.aliases = new Collection();
+
+["command"].forEach(handler => require(`./handlers/${handler}`)(bot));
 
 bot.on("ready", async () => {
     const url = await bot.generateInvite("ADMINISTRATOR");
