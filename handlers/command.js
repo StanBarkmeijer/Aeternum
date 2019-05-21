@@ -16,9 +16,8 @@ module.exports = bot => {
             if (pull.help && typeof(pull.help.name) === "string") {
                 bot.commands.set(pull.help.name, pull);
                 table.addRow(file, '✅');
-            }
-            else {
-                table.addRow(file, `❌  -> missing a help name`);
+            } else {
+                table.addRow(file, `❌  -> missing a help.name, or help.name is not a string.`);
                 continue;
             }
 
