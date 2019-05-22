@@ -1,4 +1,5 @@
 const { RichEmbed } = require("discord.js");
+const { findMember } = require("../../functions.js");
 
 module.exports = {
     help: {
@@ -13,14 +14,7 @@ module.exports = {
             .setColor("#f00")
             .setDescription("Couldn't find any user?");
 
-        let member;
-
-        if (!args[0]) member = message.member;
-        else member = message.mentions.members.first()
-        || message.guild.members.get(args[0]) 
-        || message.guild.members.find(member => member.user.tag.toLowerCase().startsWith(args.join(" ").toLowerCase()))
-        || message.guild.members.find(member => member.user.username.toLowerCase().startsWith(args.join(" ").toLowerCase()))
-        || message.guild.members.find(member => member.displayName.toLowerCase().startsWith(args.join(" ").toLowerCase()));
+        let member = findMember(message, args[0]);
 
         if (!member) 
             return message.channel.send(fail)
