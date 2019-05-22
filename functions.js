@@ -7,7 +7,7 @@ module.exports = {
 
         if (!filter || filter.size < 1) target = message.mentions.members.first();
         else {
-            if (filter.size > 1) throw new Error(`${filter.size} users were found!`);
+            if (filter.size > 1) target = filter.array();
             else target = filter.array()[0];
         }
 
