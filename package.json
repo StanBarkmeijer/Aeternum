@@ -18,6 +18,7 @@
   "homepage": "https://github.com/akaStannn/Aeternum#readme",
   "dependencies": {
     "ascii-table": "0.0.9",
+    "beautify": "0.0.8",
     "discord.js": "^11.5.0"
   }
 }

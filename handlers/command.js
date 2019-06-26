@@ -3,17 +3,16 @@ const { readdirSync } = require("fs");
 const ascii = require("ascii-table");
 
 module.exports = bot => {
-    function load(dir) {
+    let table = new ascii('Commands');
+    table.setHeading('Command', 'Load status');
+
+    ["info", "utils"].forEach(dir => {
         const commands = readdirSync(`./commands/${dir}/`).filter(file => file.endsWith(".js"));
-
-        let table = new ascii('Commands');
-
-        table.setHeading('Command', 'Load status')
 
         for (let file of commands) {
             let pull = require(`../commands/${dir}/${file}`);
 
-            if (pull.help && typeof(pull.help.name) === "string") {
+            if (pull.help && typeof (pull.help.name) === "string") {
                 bot.commands.set(pull.help.name, pull);
                 table.addRow(file, '✅');
             } else {
@@ -21,11 +20,9 @@ module.exports = bot => {
                 continue;
             }
 
-            if (pull.help.aliases && typeof(pull.help.aliases) === "object") pull.help.aliases.forEach(alias => bot.aliases.set(alias, pull.help.name));
+            if (pull.help.aliases && typeof (pull.help.aliases) === "object") pull.help.aliases.forEach(alias => bot.aliases.set(alias, pull.help.name));
         }
+    });
 
-        console.log(table.toString());
-    }
-
-    ["info"].forEach(dir => load(dir));
+    console.log(table.toString());
 }

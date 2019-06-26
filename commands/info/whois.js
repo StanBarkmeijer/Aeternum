@@ -6,7 +6,7 @@ module.exports = {
         name: "whois",
         aliases: ["user"],
         description: "Returns user information",
-        usage: "..whois [mention | id | tag | username | displayname]",
+        usage: "..whois [mention | id | tag | username ]",
         type: "info"
     },
     run: async (bot, message, args) => {

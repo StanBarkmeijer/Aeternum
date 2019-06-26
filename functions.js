@@ -3,7 +3,7 @@ module.exports = {
         let filter;
         let target;
 
-        if (toFind) filter = message.guild.members.filter(member => member.user.tag.toLowerCase().includes(toFind.toLowerCase()) || member.id == toFind);
+        if (toFind) filter = message.guild.members.filter(member => member.user.tag.toLowerCase().includes(toFind.toLowerCase()) || member.id == toFind || member.displayName.toLowerCase().includes(toFind.toLowerCase()));
 
         if (!filter || filter.size < 1) target = message.mentions.members.first();
         else {
