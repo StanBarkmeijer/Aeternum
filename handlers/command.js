@@ -6,7 +6,7 @@ module.exports = bot => {
     let table = new ascii('Commands');
     table.setHeading('Command', 'Load status');
 
-    ["info", "utils"].forEach(dir => {
+    readdirSync("./commands/").forEach(dir => {
         const commands = readdirSync(`./commands/${dir}/`).filter(file => file.endsWith(".js"));
 
         for (let file of commands) {
